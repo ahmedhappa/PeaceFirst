@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PeaceFirst</string>
+    <string name="child_name">Name : %s</string>
+    <string name="child_age">Age : %s</string>
+    <string name="report_type">Report Type : %s</string>
+    <string name="str_home">Home</string>
+    <string name="str_about">About</string>
+    <string name="str_instructions">Instructions</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PeaceFirst</string>
+    <string name="child_name">الاسم : %s</string>
+    <string name="child_age">السن : %s</string>
+    <string name="report_type">نوع التبليغ : %s</string>
+    <string name="str_home">الصفحة الرئيسية</string>
+    <string name="str_about">عن البرنامج</string>
+    <string name="str_instructions">تعليمات</string>
+</resources>
