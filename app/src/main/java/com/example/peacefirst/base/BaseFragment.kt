@@ -1,11 +1,19 @@
 package com.example.peacefirst.base
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.peacefirst.apputils.DialogUtil
 
 open class BaseFragment : Fragment() {
 
+    protected fun showFullProgressDialog() {
+        (activity as BaseActivity).showFullProgressDialog()
+    }
+
+    protected fun hideFullProgressDialog() {
+        (activity as BaseActivity).hideFullProgressDialog()
+    }
+
+    protected fun showError(msg: String) {
+        DialogUtil.showOkAlertDialog(requireActivity(), msg)
+    }
 }

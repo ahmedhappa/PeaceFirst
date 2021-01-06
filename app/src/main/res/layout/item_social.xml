@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="16dp">
+
+    <ImageView
+        android:id="@+id/iv_social_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@null"
+        tools:src="@drawable/ic_about" />
+
+    <TextView
+        android:id="@+id/tv_social_name"
+        style="@style/TextViewLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="FaceBook" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_view_social"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/str_view_link" />
+
+</LinearLayout>

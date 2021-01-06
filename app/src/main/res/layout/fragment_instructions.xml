@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/silver_light"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextViewLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_instructions" />
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CardViewDefault"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/tv_instructions"
+            style="@style/TextViewMedium"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:scrollbars="vertical"
+            tools:text="Dummy Dummy Dummy\nDummyDummyDummyDummy\nDummyDummy" />
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
