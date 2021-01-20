@@ -1,77 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_child_item"
     style="@style/CardViewDefault"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp">
+    android:layout_height="300dp">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/iv_main_child_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/silver_light"
+        android:contentDescription="@null"
+        android:scaleType="fitXY" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@color/silver_light"
-            android:contentDescription="@null"
-            android:scaleType="fitXY" />
-
-
-        <TextView
-            android:id="@+id/tv_main_child_name_ar"
-            style="@style/TextViewLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/silver_light" />
-
-        <TextView
-            android:id="@+id/tv_main_child_name_en"
-            style="@style/TextViewLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            android:visibility="gone"
-            tools:text="Name En : Adam" />
-
-        <TextView
-            android:id="@+id/tv_main_child_age"
-            style="@style/TextViewMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/silver_light" />
-
-        <TextView
-            android:id="@+id/tv_main_report_type"
-            style="@style/TextViewMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@color/silver_light" />
-
-        <View
-            android:id="@+id/v1"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/ghost" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_view_details"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/silver_light" />
-
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

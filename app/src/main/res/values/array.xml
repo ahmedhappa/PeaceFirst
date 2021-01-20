@@ -9,4 +9,24 @@
         <item>0</item>
         <item>0</item>
     </array>
+
+    <array name="act_skin_color">
+        <item>White</item>
+        <item>Brown</item>
+        <item>Black</item>
+    </array>
+
+    <array name="act_hair_color">
+        <item>Black</item>
+        <item>Brown</item>
+        <item>Yellow</item>
+        <item>Red</item>
+    </array>
+
+    <array name="act_eye_color">
+        <item>Brown</item>
+        <item>Black</item>
+        <item>Green</item>
+        <item>Blue</item>
+    </array>
 </resources>

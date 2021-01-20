@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
@@ -54,8 +55,6 @@ class HomeFragment : BaseFragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         requireActivity().title = getString(R.string.title_home_fragment)
-
-        binding.rvHomeList.layoutManager = GridLayoutManager(activity, 2)
         childrenAdapter = ChildrenAdapter(object : ChildrenAdapter.OnClickCardListener {
             override fun viewDetails(childId: Int) {
                 requireView().findNavController()
@@ -93,7 +92,7 @@ class HomeFragment : BaseFragment() {
         binding.fabReportChild.setOnClickListener {
             DialogUtil.createSimpleFlexibleMaterialDialog(
                 requireActivity(),
-                "Current Child Status",
+                getString(R.string.str_cuurent_child_status),
                 null,
                 getString(R.string.str_cancel),
                 { dialog, _ ->
@@ -103,7 +102,7 @@ class HomeFragment : BaseFragment() {
                 null,
                 null,
                 null,
-                arrayOf(viewModel.reportTypeArray[0].name, viewModel.reportTypeArray[1].name),
+                arrayOf(getString(R.string.str_missing),getString(R.string.str_founded)),
                 { dialog, which ->
                     val intent = Intent(requireActivity(), ReportChildActivity::class.java)
                     intent.putExtra(

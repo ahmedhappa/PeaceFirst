@@ -24,33 +24,26 @@ class ChildrenViewHolder(itemView: ItemHomeListBinding) : RecyclerView.ViewHolde
             placeholder(R.drawable.placeholder)
             error(R.drawable.placeholder)
         }
-        childNameArTextView.text = child.nameAr
+        childNameArTextView.text = context.getString(R.string.child_name_ar, child.nameAr)
         child.nameEn?.let {
             if (it.isNotEmpty()) {
                 childNameEnTextView.visibility = View.VISIBLE
-                childNameEnTextView.text = child.nameEn
+                childNameEnTextView.text = context.getString(R.string.child_name_en, child.nameEn)
             } else {
                 childNameEnTextView.visibility = View.GONE
             }
         }
         childAgeTextView.text = context.getString(R.string.child_age, child.age.toString())
-        reportTypeTextView.text = child.reportType.name
 
-//        if (child.reportType == ModelEnums.ReportType.Missing) {
-//            reportTypeTextView.setTextColor(
-//                ContextCompat.getColor(
-//                    context,
-//                    R.color.color_secondary_dark
-//                )
-//            )
-//        } else {
-//            reportTypeTextView.setTextColor(
-//                ContextCompat.getColor(
-//                    context,
-//                    R.color.black
-//                )
-//            )
-//        }
+        if (child.reportType == ModelEnums.ReportType.Missing) {
+            reportTypeTextView.text = context.getString(R.string.str_missing)
+            reportTypeTextView.background =
+                ContextCompat.getDrawable(context, R.drawable.shape_rectangle_opacity_red)
+        } else {
+            reportTypeTextView.text = context.getString(R.string.str_founded)
+            reportTypeTextView.background =
+                ContextCompat.getDrawable(context, R.drawable.shape_rectangle_opacity_green)
+        }
         viewDetailsButton.setOnClickListener {
             listener.viewDetails(child.childId)
         }

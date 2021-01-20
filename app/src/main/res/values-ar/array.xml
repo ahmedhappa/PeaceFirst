@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="act_skin_color">
+        <item>ابيض</item>
+        <item>بني</item>
+        <item>اسود</item>
+    </array>
+
+    <array name="act_hair_color">
+        <item>اسود</item>
+        <item>بني</item>
+        <item>اصفر</item>
+        <item>احمر</item>
+    </array>
+
+    <array name="act_eye_color">
+        <item>بني</item>
+        <item>اسود</item>
+        <item>اخضر</item>
+        <item>ازرق</item>
+    </array>
+</resources>

@@ -25,8 +25,6 @@
     <string name="str_phone">Phone</string>
     <string name="str_address">Address</string>
     <string name="str_report_child">Report Child</string>
-    <string name="str_reporter">Reporter</string>
-    <string name="str_founder">Founder</string>
     <string name="str_not_required">Not Required</string>
     <string name="str_national_id">National ID</string>
     <string name="str_submit">Submit</string>
@@ -80,7 +78,6 @@
     <string name="intent_chooser_open_with">Open With</string>
     <string name="toast_no_more_data">No More Data To Show</string>
     <string name="str_current_filter">Current Filters</string>
-    <string name="str_children">Children</string>
     <string name="title_details_activity">Child Details</string>
     <string name="title_filter_activity">Filter Data</string>
     <string name="title_report_child_activity">Report New Child</string>
@@ -92,4 +89,6 @@
     <string name="str_error_national_id">National ID Should Contain 14 Digits</string>
     <string name="str_error_age">Age Must Be Less than or equal 20</string>
     <string name="str_error_height">Height range from 10 to 150</string>
+    <string name="str_more">More</string>
+    <string name="str_cuurent_child_status">Current Child Status</string>
 </resources>

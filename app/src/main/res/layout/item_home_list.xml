@@ -1,80 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_child_item"
     style="@style/CardViewDefault"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp">
+    android:layout_height="300dp">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/iv_main_child_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/placeholder" />
 
-        <ImageView
-            android:id="@+id/iv_main_child_img"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:contentDescription="@null"
-            android:scaleType="fitXY" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_rectangle_gradient_black" />
 
 
-        <TextView
-            android:id="@+id/tv_main_child_name_ar"
-            style="@style/TextViewLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            tools:text="Name Ar : ادم" />
+    <TextView
+        android:id="@+id/tv_main_child_name_ar"
+        style="@style/TextViewLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/tv_main_child_name_en"
+        app:layout_constraintEnd_toEndOf="@+id/tv_main_child_age"
+        app:layout_constraintStart_toStartOf="@+id/tv_main_child_name_en"
+        tools:text="Name Ar : adam" />
 
-        <TextView
-            android:id="@+id/tv_main_child_name_en"
-            style="@style/TextViewLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:visibility="gone"
-            tools:text="Name En : Adam" />
+    <TextView
+        android:id="@+id/tv_main_child_name_en"
+        style="@style/TextViewLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:textColor="?attr/colorOnPrimary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tv_main_child_age"
+        app:layout_constraintEnd_toEndOf="@+id/tv_main_child_age"
+        app:layout_constraintStart_toStartOf="@+id/tv_main_child_age"
+        tools:text="Name En : Adam"
+        tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/tv_main_child_age"
-            style="@style/TextViewMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            tools:text="age : 10" />
+    <TextView
+        android:id="@+id/tv_main_child_age"
+        style="@style/TextViewLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_main_child_img"
+        app:layout_constraintEnd_toStartOf="@+id/btn_view_details"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="age : 10" />
 
-        <TextView
-            android:id="@+id/tv_main_report_type"
-            style="@style/TextViewMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="end"
-            tools:text="Report type : Missing" />
+    <TextView
+        android:id="@+id/tv_main_report_type"
+        style="@style/TextViewLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_main_child_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/shape_rectangle_opacity_red"
+        tools:text="Report type : Missing" />
 
-        <View
-            android:id="@+id/v1"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/ghost" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_view_details"
-            style="@style/ButtonTextButtonDefault"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/str_view_details" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_view_details"
+        style="@style/ButtonDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/str_more"
+        android:textColor="@color/black"
+        app:cornerRadius="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_main_child_age"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
