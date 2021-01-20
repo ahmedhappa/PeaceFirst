@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.2"
     def majorVersion = 1
     def minorVersion = 1
-    def patchVersion = 0
+    def patchVersion = 1
     defaultConfig {
         applicationId "com.example.peacefirst"
         minSdkVersion 21
