@@ -16,7 +16,7 @@
             android:id="@+id/ll_filters_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
+
             android:layout_marginTop="8dp"
             android:orientation="vertical"
             android:visibility="gone"
@@ -26,6 +26,7 @@
                 style="@style/TextViewMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:text="@string/str_current_filter" />
 
             <com.google.android.material.chip.ChipGroup
@@ -33,7 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:paddingHorizontal="8dp">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_filter_report_type"
@@ -87,19 +89,12 @@
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
-        <TextView
-            style="@style/TextViewMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/str_children" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
+            android:background="@color/white"
             tools:listitem="@layout/item_home_list" />
     </LinearLayout>
 

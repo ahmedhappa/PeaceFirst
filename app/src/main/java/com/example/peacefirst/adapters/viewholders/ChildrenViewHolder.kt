@@ -24,33 +24,33 @@ class ChildrenViewHolder(itemView: ItemHomeListBinding) : RecyclerView.ViewHolde
             placeholder(R.drawable.placeholder)
             error(R.drawable.placeholder)
         }
-        childNameArTextView.text = context.getString(R.string.child_name_ar, child.nameAr)
+        childNameArTextView.text = child.nameAr
         child.nameEn?.let {
             if (it.isNotEmpty()) {
                 childNameEnTextView.visibility = View.VISIBLE
-                childNameEnTextView.text = context.getString(R.string.child_name_en, child.nameEn)
+                childNameEnTextView.text = child.nameEn
             } else {
                 childNameEnTextView.visibility = View.GONE
             }
         }
         childAgeTextView.text = context.getString(R.string.child_age, child.age.toString())
-        reportTypeTextView.text = context.getString(R.string.report_type, child.reportType)
+        reportTypeTextView.text = child.reportType.name
 
-        if (child.reportType == ModelEnums.ReportType.Missing) {
-            reportTypeTextView.setTextColor(
-                ContextCompat.getColor(
-                    context,
-                    R.color.color_secondary_dark
-                )
-            )
-        } else {
-            reportTypeTextView.setTextColor(
-                ContextCompat.getColor(
-                    context,
-                    R.color.black
-                )
-            )
-        }
+//        if (child.reportType == ModelEnums.ReportType.Missing) {
+//            reportTypeTextView.setTextColor(
+//                ContextCompat.getColor(
+//                    context,
+//                    R.color.color_secondary_dark
+//                )
+//            )
+//        } else {
+//            reportTypeTextView.setTextColor(
+//                ContextCompat.getColor(
+//                    context,
+//                    R.color.black
+//                )
+//            )
+//        }
         viewDetailsButton.setOnClickListener {
             listener.viewDetails(child.childId)
         }

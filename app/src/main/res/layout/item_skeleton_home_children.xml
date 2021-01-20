@@ -16,9 +16,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/iv_main_child_img"
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:background="@color/silver_light"
             android:contentDescription="@null"
             android:scaleType="fitXY" />
 
@@ -30,8 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
-            android:gravity="center"
-            tools:text="Name Ar : ادم" />
+            android:background="@color/silver_light" />
 
         <TextView
             android:id="@+id/tv_main_child_name_en"
@@ -40,7 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
-            android:gravity="center"
             android:visibility="gone"
             tools:text="Name En : Adam" />
 
@@ -51,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
-            tools:text="age : 10" />
+            android:background="@color/silver_light" />
 
         <TextView
             android:id="@+id/tv_main_report_type"
@@ -59,8 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:gravity="end"
-            tools:text="Report type : Missing" />
+            android:background="@color/silver_light" />
 
         <View
             android:id="@+id/v1"
@@ -71,10 +68,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_view_details"
-            style="@style/ButtonTextButtonDefault"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/str_view_details" />
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/silver_light" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

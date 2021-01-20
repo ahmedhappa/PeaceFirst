@@ -2,7 +2,7 @@
     <string name="app_name">PeaceFirst</string>
     <string name="child_name_ar">AR-Name: %s</string>
     <string name="child_name_en">EN-Name : %s</string>
-    <string name="child_age">Age : %s</string>
+    <string name="child_age">%s Years Old</string>
     <string name="report_type">Report Type : %s</string>
     <string name="str_home">Home</string>
     <string name="str_about">About</string>
@@ -70,7 +70,7 @@
     <string name="str_missing">Missing</string>
     <string name="str_founded">Founded</string>
     <string name="str_call">Call</string>
-    <string name="alert_report_type_message">What is the current condition of child</string>
+    <string name="alert_report_type_message">What is the current status of child?</string>
     <string name="str_cancel">Cancel</string>
     <string name="toast_success_child_report">Child Reported Successfully</string>
     <string name="str_show_three_numbers">%s…</string>
@@ -79,7 +79,7 @@
     <string name="str_view_link">View Link</string>
     <string name="intent_chooser_open_with">Open With</string>
     <string name="toast_no_more_data">No More Data To Show</string>
-    <string name="str_current_filter">Current Filter</string>
+    <string name="str_current_filter">Current Filters</string>
     <string name="str_children">Children</string>
     <string name="title_details_activity">Child Details</string>
     <string name="title_filter_activity">Filter Data</string>
@@ -87,4 +87,9 @@
     <string name="title_home_fragment">Home</string>
     <string name="title_about_fragment">About</string>
     <string name="title_instruction_fragment">Instructions</string>
+    <string name="no_filter_selected">No Filters Selected</string>
+    <string name="str_error_correct_phone">Enter Correct Phone Number</string>
+    <string name="str_error_national_id">National ID Should Contain 14 Digits</string>
+    <string name="str_error_age">Age Must Be Less than or equal 20</string>
+    <string name="str_error_height">Height range from 10 to 150</string>
 </resources>

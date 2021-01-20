@@ -1,15 +1,12 @@
 package com.example.peacefirst.viewmodles
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.peacefirst.apputils.AppSharedPreference
 import com.example.peacefirst.base.BaseResponse
 import com.example.peacefirst.base.BaseViewModel
 import com.example.peacefirst.base.Result
 import com.example.peacefirst.models.response.SocialResponse
 import com.example.peacefirst.repos.MainRepo
-import kotlinx.coroutines.launch
 
 class MainViewModel : BaseViewModel() {
     private val mainRepo = MainRepo()

@@ -88,4 +88,7 @@
     <string name="title_home_fragment">Home</string>
     <string name="title_about_fragment">About</string>
     <string name="title_instruction_fragment">Instructions</string>
+    <string name="no_filter_selected">No Filters Selected</string>
+    <string name="str_error_correct_phone">Enter Correct Phone Number</string>
+    <string name="str_error_national_id">National ID Should Contain 14 Digits</string>
 </resources>

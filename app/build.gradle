@@ -35,7 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    // to allow data binding
+    // to view data binding
     buildFeatures {
         viewBinding true
     }
@@ -68,6 +68,9 @@ dependencies {
     //view model and live data
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     implementation "androidx.fragment:fragment-ktx:1.2.5"
+    //skeleton for dummy list view
+    implementation 'com.ethanhua:skeleton:1.1.2'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

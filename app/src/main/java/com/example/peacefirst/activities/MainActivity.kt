@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navControllerFragment = findNavController(R.id.fragment_nav_host_main)
-
+        binding.bnvMain.selectedItemId = R.id.bottom_nav_item_home
         binding.bnvMain.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_nav_item_home -> {

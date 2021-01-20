@@ -1,7 +1,6 @@
 package com.example.peacefirst.fragments
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
+import com.ethanhua.skeleton.Skeleton
+import com.ethanhua.skeleton.SkeletonScreen
 import com.example.peacefirst.R
 import com.example.peacefirst.activities.FilterActivity
 import com.example.peacefirst.activities.ReportChildActivity
@@ -25,7 +27,6 @@ import com.example.peacefirst.models.ModelEnums
 import com.example.peacefirst.models.request.ChildrenRequest
 import com.example.peacefirst.models.response.ChildrenResponse
 import com.example.peacefirst.viewmodles.HomeViewModel
-import com.google.gson.Gson
 
 class HomeFragment : BaseFragment() {
     companion object {
@@ -36,6 +37,9 @@ class HomeFragment : BaseFragment() {
     private val filterRequestCode = 20
     private val reportChildRequestCode = 30
     private val viewModel: HomeViewModel by viewModels()
+
+    private lateinit var skeletonScreen: RecyclerViewSkeletonScreen
+    private lateinit var childrenAdapter: ChildrenAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,78 +54,70 @@ class HomeFragment : BaseFragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         requireActivity().title = getString(R.string.title_home_fragment)
-        binding.rvHomeList.layoutManager = GridLayoutManager(activity, 2)
 
-        val childrenAdapter = ChildrenAdapter(viewModel.childrenList,
-            object : ChildrenAdapter.OnClickCardListener {
-                override fun viewDetails(childId: Int) {
-                    requireView().findNavController()
-                        .navigate(
-                            HomeFragmentDirections.actionHomeFragmentToChildDetailsActivity(
-                                childId
-                            )
+        binding.rvHomeList.layoutManager = GridLayoutManager(activity, 2)
+        childrenAdapter = ChildrenAdapter(object : ChildrenAdapter.OnClickCardListener {
+            override fun viewDetails(childId: Int) {
+                requireView().findNavController()
+                    .navigate(
+                        HomeFragmentDirections.actionHomeFragmentToChildDetailsActivity(
+                            childId
                         )
-                }
-            })
+                    )
+            }
+        })
         binding.rvHomeList.adapter = childrenAdapter
         binding.rvHomeList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (!recyclerView.canScrollVertically(1)) {
-                    if (viewModel.childrenList.size != 0 && ((viewModel.childrenList.size % 20) == 0))
+                if (!recyclerView.canScrollVertically(1) && viewModel.childrenListSize != 0) {
+                    if (viewModel.canLoadMoreData()) {
                         viewModel.getAllChildren()
-                    else
+                    } else {
                         Toast.makeText(
                             requireActivity(),
                             getString(R.string.toast_no_more_data),
                             Toast.LENGTH_SHORT
                         ).show()
+                    }
                 }
             }
         })
 
-        if (viewModel.childrenList.isEmpty())
-            viewModel.getAllChildren()
         viewModel.childrenLiveData.observe(viewLifecycleOwner, childrenResponseObserver)
-
-        binding.fabReportChild.setOnClickListener {
-            DialogUtil.createSimpleFlexibleMaterialDialog(
-                requireActivity(), getString(R.string.str_report_type),
-                getString(
-                    R.string.alert_report_type_message
-                ),
-                ModelEnums.ReportType.Missing.name,
-                { _, _ ->
-                    val intent = Intent(requireActivity(), ReportChildActivity::class.java)
-                    intent.putExtra(
-                        ReportChildActivity.EXTRA_REPORT_TYPE,
-                        ModelEnums.ReportType.Missing
-                    )
-                    startActivityForResult(intent, reportChildRequestCode)
-                },
-                ModelEnums.ReportType.Founded.name,
-                { _, _ ->
-                    val intent = Intent(requireActivity(), ReportChildActivity::class.java)
-                    intent.putExtra(
-                        ReportChildActivity.EXTRA_REPORT_TYPE,
-                        ModelEnums.ReportType.Founded
-                    )
-                    startActivityForResult(intent, reportChildRequestCode)
-                },
-                getString(R.string.str_cancel),
-                { dialog, _ ->
-                    dialog.dismiss()
-                }, false
-            ).show()
-
-        }
-
+        viewModel.childrenListLD.observe(viewLifecycleOwner, childrenListObserver)
         viewModel.childrenRequestLD.observe(viewLifecycleOwner, {
             handleFiltersStatus(it)
         })
 
-//        binding.cgFilters.setOnCheckedChangeListener { _, checkedId ->
-//            when (checkedId) {
+        binding.fabReportChild.setOnClickListener {
+            DialogUtil.createSimpleFlexibleMaterialDialog(
+                requireActivity(),
+                "Current Child Status",
+                null,
+                getString(R.string.str_cancel),
+                { dialog, _ ->
+                    dialog.dismiss()
+                },
+                null,
+                null,
+                null,
+                null,
+                arrayOf(viewModel.reportTypeArray[0].name, viewModel.reportTypeArray[1].name),
+                { dialog, which ->
+                    val intent = Intent(requireActivity(), ReportChildActivity::class.java)
+                    intent.putExtra(
+                        ReportChildActivity.EXTRA_REPORT_TYPE,
+                        viewModel.reportTypeArray[which]
+                    )
+                    startActivityForResult(intent, reportChildRequestCode)
+                    dialog.dismiss()
+                },
+                false
+            ).show()
+
+        }
+
         binding.chipFilterReportType.setOnClickListener { viewModel.clearReportTypeFilter() }
         binding.chipFilterGender.setOnClickListener { viewModel.clearGenderFilter() }
         binding.chipFilterAge.setOnClickListener { viewModel.clearAgeFilter() }
@@ -129,8 +125,6 @@ class HomeFragment : BaseFragment() {
         binding.chipFilterSkinColor.setOnClickListener { viewModel.clearSkinColorFilter() }
         binding.chipFilterHairColor.setOnClickListener { viewModel.clearHairColorFilter() }
         binding.chipFilterEyeColor.setOnClickListener { viewModel.clearEyeColorFilter() }
-//            }
-//        }
 
         return binding.root
     }
@@ -138,22 +132,35 @@ class HomeFragment : BaseFragment() {
     private val childrenResponseObserver =
         Observer<Result<BaseResponse<MutableList<ChildrenResponse>>>> {
             when (it) {
-                is Result.Success -> {
-                    if (it.response.data?.isEmpty() == true) {
-                        Toast.makeText(
-                            requireActivity(),
-                            getString(R.string.toast_no_more_data),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    binding.rvHomeList.adapter?.notifyDataSetChanged()
-
+                is Result.Success -> if (it.response.data?.isEmpty() == true) {
+                    Toast.makeText(
+                        requireActivity(),
+                        getString(R.string.toast_no_more_data),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 is Result.Error -> showError(it.exception.msg)
-                Result.Loading -> showFullProgressDialog()
-                Result.Complete -> hideFullProgressDialog()
+                Result.Loading -> if (viewModel.childrenListSize > 0) showFullProgressDialog()
+                Result.Complete -> if (viewModel.childrenListSize > 0) hideFullProgressDialog()
             }
         }
+
+    private val childrenListObserver = Observer<MutableList<ChildrenResponse>> {
+        when (it.size) {
+            0 -> skeletonScreen = Skeleton.bind(binding.rvHomeList)
+                .adapter(childrenAdapter)
+                .load(R.layout.item_skeleton_home_children)
+                .show()
+            in 1..20 -> {
+                skeletonScreen.hide()
+                childrenAdapter.submitList(it)
+            }
+            else -> {
+                childrenAdapter.submitList(it)
+                childrenAdapter.notifyDataSetChanged()
+            }
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
@@ -191,8 +198,8 @@ class HomeFragment : BaseFragment() {
     private fun handleFiltersStatus(childrenRequest: ChildrenRequest) {
         if (childrenRequest.reportType == null &&
             childrenRequest.gender == null &&
-            childrenRequest.minAge == null &&
-            childrenRequest.minHeight == null &&
+            childrenRequest.maxAge == null &&
+            childrenRequest.maxHeight == null &&
             childrenRequest.skinColor == null &&
             childrenRequest.hairColor == null &&
             childrenRequest.eyeColor == null
@@ -215,7 +222,7 @@ class HomeFragment : BaseFragment() {
                 binding.chipFilterGender.text = childrenRequest.gender
             }
 
-            if (childrenRequest.minAge == null) {
+            if (childrenRequest.maxAge == null) {
                 binding.chipFilterAge.visibility = View.GONE
             } else {
                 binding.chipFilterAge.visibility = View.VISIBLE
@@ -226,7 +233,7 @@ class HomeFragment : BaseFragment() {
                 )
             }
 
-            if (childrenRequest.minHeight == null) {
+            if (childrenRequest.maxHeight == null) {
                 binding.chipFilterHeight.visibility = View.GONE
             } else {
                 binding.chipFilterHeight.visibility = View.VISIBLE

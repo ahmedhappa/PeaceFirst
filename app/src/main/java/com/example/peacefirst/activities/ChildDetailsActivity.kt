@@ -94,10 +94,7 @@ class ChildDetailsActivity : BaseActivity() {
                         R.string.str_show_three_numbers,
                         reporterPhone.substring(0, 3)
                     )
-                    binding.tvReporterAddress.text =
-                        reporterAddress
-                    binding.tvReporterNationalId.text =
-                        reporterNationalId
+                    binding.tvReporterAddress.text = reporterAddress
 
                     binding.btnCall.setOnClickListener {
                         viewModel.callNumberAnalytics(args.childId)

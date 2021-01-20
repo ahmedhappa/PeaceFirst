@@ -31,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/str_please_fill_all_fields_below" />
+                android:text="@string/str_please_fill_all_fields_below"
+                android:textColor="@color/color_primary_dark" />
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/CardViewDefault"
@@ -58,7 +59,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:digits="اأإبتثجحخدذرزسشضطظعغفقكلمنهويىءئ "
-                            android:inputType="textPersonName" />
+                            android:inputType="text"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -77,7 +79,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                            android:inputType="textPersonName" />
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <View
@@ -131,6 +134,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
                             android:hint="@string/str_age"
+                            app:errorEnabled="true"
                             app:suffixText="Years">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -138,6 +142,7 @@
                                 style="@style/TextInputEditTextDefault"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="2" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -149,8 +154,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
-                            android:layout_weight="1"
+                            android:layout_weight="1.4"
                             android:hint="@string/str_height"
+                            app:errorEnabled="true"
                             app:suffixText="Centimeter">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -158,6 +164,7 @@
                                 style="@style/TextInputEditTextDefault"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:imeOptions="actionDone"
                                 android:inputType="number"
                                 android:maxLength="3" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -251,7 +258,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_attach_image"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        style="@style/ButtonOutlinedDefault"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -278,7 +285,10 @@
                             android:id="@+id/et_child_missed_place"
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -294,7 +304,10 @@
                             android:id="@+id/et_child_current_place"
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -313,7 +326,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/str_please_fill_all_fields_below" />
+                android:text="@string/str_please_fill_all_fields_below"
+                android:textColor="@color/color_primary_dark" />
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/CardViewDefault"
@@ -358,8 +372,10 @@
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
                             android:inputType="number"
-                            android:maxLength="11" />
+                            android:maxLength="11"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -374,7 +390,10 @@
                             android:id="@+id/et_reporter_address"
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -391,8 +410,10 @@
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:maxLength="14" />
+                            android:maxLength="14"
+                            android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -402,9 +423,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_status_selector"
                 android:enabled="false"
-                android:text="@string/str_submit" />
+                android:text="@string/str_submit"
+                android:textColor="?attr/colorOnPrimary" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

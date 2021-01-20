@@ -46,6 +46,8 @@ object DialogUtil {
         negBtnAction: DialogInterface.OnClickListener?,
         neutralBtnText: String?,
         neutralBtnAction: DialogInterface.OnClickListener?,
+        items: Array<String>?,
+        itemsClickListener: DialogInterface.OnClickListener?,
         isCancelable: Boolean = true
     ): AlertDialog {
         return MaterialAlertDialogBuilder(context)
@@ -54,6 +56,7 @@ object DialogUtil {
             .setPositiveButton(posBtnText, posBtnAction)
             .setNegativeButton(negBtnTest, negBtnAction)
             .setNeutralButton(neutralBtnText, neutralBtnAction)
+            .setSingleChoiceItems(items, -1, itemsClickListener)
             .setCancelable(isCancelable)
             .create()
     }
@@ -68,6 +71,8 @@ object DialogUtil {
             msg,
             context.getString(R.string.str_Ok),
             { p0, _ -> p0.dismiss() },
+            null,
+            null,
             null,
             null,
             null,

@@ -3,6 +3,7 @@ package com.example.peacefirst.viewmodles
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.peacefirst.apputils.Extensions.notifyObserver
 import com.example.peacefirst.base.BaseResponse
 import com.example.peacefirst.base.BaseViewModel
 import com.example.peacefirst.models.response.ChildrenResponse
@@ -16,21 +17,37 @@ class HomeViewModel : BaseViewModel() {
     private val homeRepo = HomeRepo()
     private val _childrenMutableLiveData =
         MutableLiveData<Result<BaseResponse<MutableList<ChildrenResponse>>>>()
-    var childrenList: MutableList<ChildrenResponse> = mutableListOf()
     val childrenLiveData: LiveData<Result<BaseResponse<MutableList<ChildrenResponse>>>>
         get() = _childrenMutableLiveData
-    private var childRequestFilters = ChildrenRequest()
+
+    private val _childrenListMLD = MutableLiveData<MutableList<ChildrenResponse>>()
+    val childrenListLD: LiveData<MutableList<ChildrenResponse>>
+        get() = _childrenListMLD
+
     private val _childrenRequestMLD = MutableLiveData<ChildrenRequest>()
     val childrenRequestLD: LiveData<ChildrenRequest>
         get() = _childrenRequestMLD
 
+    var childrenListSize = 0
+
+    init {
+        _childrenListMLD.value = mutableListOf()
+        _childrenRequestMLD.value = ChildrenRequest()
+        getAllChildren()
+    }
+
+    val reportTypeArray = arrayOf(ModelEnums.ReportType.Missing, ModelEnums.ReportType.Founded)
+
     fun getAllChildren() {
-        val requestPage: Int = (childrenList.size / 20) + 1
+        val requestPage: Int = (_childrenListMLD.value!!.size / 20) + 1
         callApi(_childrenMutableLiveData) {
-            val result = homeRepo.getAllChildren(childRequestFilters, requestPage)
+            val result = homeRepo.getAllChildren(_childrenRequestMLD.value!!, requestPage)
             result.data?.let {
-                if (it.isNotEmpty())
-                    childrenList.addAll(it)
+                if (it.isNotEmpty()) {
+                    _childrenListMLD.value?.addAll(it)
+                    childrenListSize = _childrenListMLD.value!!.size
+                    _childrenListMLD.notifyObserver()
+                }
             }
             result
         }
@@ -38,54 +55,57 @@ class HomeViewModel : BaseViewModel() {
 
 
     fun resetFilters() {
-        childrenList.clear()
-        childRequestFilters = ChildrenRequest()
-        _childrenRequestMLD.value = childRequestFilters
+        childrenListSize = 0
+        _childrenListMLD.value = mutableListOf()
+        _childrenRequestMLD.value = ChildrenRequest()
         getAllChildren()
     }
 
     fun setNewFilters(childrenRequest: ChildrenRequest) {
-        childrenList.clear()
-        childRequestFilters = childrenRequest
-        _childrenRequestMLD.value = childRequestFilters
+        childrenListSize = 0
+        _childrenListMLD.value = mutableListOf()
+        _childrenRequestMLD.value = childrenRequest
         getAllChildren()
     }
 
     fun clearReportTypeFilter() {
-        childRequestFilters.reportType = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.reportType = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
     fun clearGenderFilter() {
-        childRequestFilters.gender = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.gender = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
     fun clearAgeFilter() {
-        childRequestFilters.minAge = null
-        childRequestFilters.maxAge = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.minAge = null
+        _childrenRequestMLD.value?.maxAge = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
     fun clearHeightFilter() {
-        childRequestFilters.minHeight = null
-        childRequestFilters.maxHeight = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.minHeight = null
+        _childrenRequestMLD.value?.maxHeight = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
     fun clearSkinColorFilter() {
-        childRequestFilters.skinColor = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.skinColor = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
     fun clearHairColorFilter() {
-        childRequestFilters.hairColor = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.hairColor = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
     fun clearEyeColorFilter() {
-        childRequestFilters.eyeColor = null
-        setNewFilters(childRequestFilters)
+        _childrenRequestMLD.value?.eyeColor = null
+        setNewFilters(_childrenRequestMLD.value!!)
     }
 
+    fun canLoadMoreData(): Boolean {
+        return (childrenListSize % 20) == 0
+    }
 }

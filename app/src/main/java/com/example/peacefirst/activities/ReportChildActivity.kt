@@ -113,8 +113,7 @@ class ReportChildActivity : BaseActivity() {
                         this,
                         getString(R.string.toast_success_child_report),
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    ).show()
                     setResult(RESULT_OK)
                     finish()
                 }
@@ -151,16 +150,11 @@ class ReportChildActivity : BaseActivity() {
     private fun getImageNameFromUri(uri: Uri): String {
         val cursor = contentResolver.query(uri, null, null, null, null)
         var result = "imgName.jpg"
-        try {
-            if (cursor != null && cursor.moveToFirst()) {
-                result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            cursor?.close()
-            return result
+        if (cursor != null && cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
         }
+        cursor?.close()
+        return result
     }
 
     private fun setAutoCompleteTextData() {
@@ -193,11 +187,27 @@ class ReportChildActivity : BaseActivity() {
             changeButtonStatus()
         }
         binding.etAge.doAfterTextChanged {
-            it?.let { isChildAgeFieldActive = it.isNotEmpty() }
+            it?.let {
+                if (it.toString().isNotEmpty() && it.toString().toInt() <= 20 && it.toString().toInt() != 0) {
+                    binding.tilAge.error = null
+                    isChildAgeFieldActive = true
+                } else {
+                    binding.tilAge.error = getString(R.string.str_error_age)
+                    isChildAgeFieldActive = false
+                }
+            }
             changeButtonStatus()
         }
         binding.etHeight.doAfterTextChanged {
-            it?.let { isChildHeightFieldActive = it.isNotEmpty() }
+            it?.let {
+                if (it.toString().isNotEmpty() && it.toString().toInt() <= 150 && it.toString().toInt() >= 10) {
+                    binding.tilHeight.error = null
+                    isChildHeightFieldActive = true
+                } else {
+                    binding.tilHeight.error = getString(R.string.str_error_height)
+                    isChildHeightFieldActive = false
+                }
+            }
             changeButtonStatus()
         }
         binding.actSkinColor.doAfterTextChanged {
@@ -226,8 +236,8 @@ class ReportChildActivity : BaseActivity() {
         }
         binding.etReporterPhone.doAfterTextChanged {
             it?.let {
-                if (it.length < 11 || !it.startsWith("010")) {
-                    binding.tilReporterPhone.error = "Enter Correct Phone Number"
+                if (it.length < 11 || !it.startsWith("01")) {
+                    binding.tilReporterPhone.error = getString(R.string.str_error_correct_phone)
                     isReporterPhoneFieldActive = false
                 } else {
                     binding.tilReporterPhone.error = null
@@ -243,7 +253,7 @@ class ReportChildActivity : BaseActivity() {
         binding.etReporterNationalId.doAfterTextChanged {
             it?.let {
                 if (it.length < 14) {
-                    binding.tilReporterNationalId.error = "Enter Correct National ID"
+                    binding.tilReporterNationalId.error = getString(R.string.str_error_national_id)
                     isReporterNationalIDFieldActive = false
                 } else {
                     binding.tilReporterNationalId.error = null
