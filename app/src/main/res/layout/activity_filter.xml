@@ -54,11 +54,11 @@
                     android:text="@string/str_missing" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/rb_filter_founded"
+                    android:id="@+id/rb_filter_found"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/str_founded" />
+                    android:text="@string/str_found" />
             </RadioGroup>
 
             <TextView

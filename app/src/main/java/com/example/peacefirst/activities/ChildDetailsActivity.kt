@@ -6,7 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.navArgs
 import coil.load
@@ -40,11 +40,11 @@ class ChildDetailsActivity : BaseActivity() {
             is Result.Success -> {
                 val childDetailsResponse = it.response.data
                 childDetailsResponse?.apply {
-                    if (childReportType == ModelEnums.ReportType.Founded) {
+                    if (childReportType == ModelEnums.ReportType.Missing) {
+                        binding.tvChildPlaceHeader.text = getString(R.string.str_child_missed_place)
+                    } else {
                         binding.tvChildPlaceHeader.text =
                             getString(R.string.str_place_where_you_found_child)
-                    } else {
-                        binding.tvChildPlaceHeader.text = getString(R.string.str_child_missed_place)
                     }
                     binding.tvChildPlace.text = place
                     binding.ivChildImg.load(image) {
@@ -69,19 +69,19 @@ class ChildDetailsActivity : BaseActivity() {
                     binding.tvChildGender.text = gender.name
                     when (gender) {
                         ModelEnums.Gender.Male -> {
-                            binding.tvChildGender.setCompoundDrawablesWithIntrinsicBounds(
-                                0,
-                                0,
-                                R.drawable.ic_male,
-                                0
+                            binding.ivGender.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    this@ChildDetailsActivity,
+                                    R.drawable.ic_male
+                                )
                             )
                         }
                         ModelEnums.Gender.Female -> {
-                            binding.tvChildGender.setCompoundDrawablesWithIntrinsicBounds(
-                                0,
-                                0,
-                                R.drawable.ic_female,
-                                0
+                            binding.ivGender.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    this@ChildDetailsActivity,
+                                    R.drawable.ic_female
+                                )
                             )
                         }
                     }

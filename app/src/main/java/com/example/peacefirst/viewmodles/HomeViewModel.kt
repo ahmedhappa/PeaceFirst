@@ -1,6 +1,5 @@
 package com.example.peacefirst.viewmodles
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.peacefirst.apputils.Extensions.notifyObserver
@@ -35,8 +34,6 @@ class HomeViewModel : BaseViewModel() {
         _childrenRequestMLD.value = ChildrenRequest()
         getAllChildren()
     }
-
-    val reportTypeArray = arrayOf(ModelEnums.ReportType.Missing, ModelEnums.ReportType.Founded)
 
     fun getAllChildren() {
         val requestPage: Int = (_childrenListMLD.value!!.size / 20) + 1

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PeaceFirst</string>
+    <string name="app_name">Find Me In</string>
     <string name="child_name_ar">الاسم-بالعربية: %s</string>
     <string name="child_name_en">الاسم-بالانجليزية : %s</string>
     <string name="child_age">%s سنوات</string>
+    <string name="child_age_more_than_10">%s سنة</string>
     <string name="report_type">نوع البلاغ : %s</string>
     <string name="str_home">الرئيسية</string>
     <string name="str_about">حول البرنامج</string>
@@ -67,13 +68,13 @@
     <string name="str_clear_filters">مسح كافة المرشحات</string>
     <string name="str_add_filters">إضافة مرشحات</string>
     <string name="str_missing">مفقود</string>
-    <string name="str_founded">معثور علية</string>
+    <string name="str_found">معثور علية</string>
     <string name="str_call">اتصل</string>
-    <string name="alert_report_type_message">ما هي حاله الطفل حاليا?</string>
+    <string name="alert_report_type_message">ما هي حاله الطفل حاليا؟</string>
     <string name="str_cancel">إلغاء</string>
     <string name="toast_success_child_report">تم التبليغ عن الطفل بنجاح</string>
     <string name="str_show_three_numbers">%s…</string>
-    <string name="str_place_where_you_found_child">المكان الذي يوجد فيه الطفل</string>
+    <string name="str_place_where_you_found_child">مكان العثور علي الطفل</string>
     <string name="pref_default_instructions_value">تعليمات التطبيق سوف تكون هنا</string>
     <string name="str_view_link">مشهادة الرابط</string>
     <string name="intent_chooser_open_with">فتح بواسطة</string>
@@ -89,7 +90,8 @@
     <string name="str_error_correct_phone">ادخل رقم الهاتف الصحيح</string>
     <string name="str_error_national_id">الرقم القومي يجب ان يحتوي على 14 رقم</string>
     <string name="str_error_age">السن يجب ان يكون اقل من او يساوي 20</string>
-    <string name="str_error_height">الطول يترواح بين 10 الي 150</string>
+    <string name="str_error_height">الطول من 10 الي 150</string>
     <string name="str_more">المزيد</string>
-    <string name="str_cuurent_child_status">حالة الطفل الحاليه</string>
+    <string name="str_current_child_status">حالة الطفل الحاليه</string>
+    <string name="str_no_data_show">لا يوجد بيانات لاظهارها</string>
 </resources>

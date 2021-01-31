@@ -25,7 +25,7 @@ class ReportChildRepo {
                 "hair_color" to stringToRequestBody(hairColor),
                 "eye_color" to stringToRequestBody(eyeColor),
                 "child_missed_place" to stringToRequestBody(childMissedPlace),
-                "report_type" to stringToRequestBody(reportType.name),
+                "report_type" to stringToRequestBody(reportType),
                 "reporter_name" to stringToRequestBody(reporter.name),
                 "reporter_phone" to stringToRequestBody(reporter.phone),
                 "reporter_address" to stringToRequestBody(reporter.address),

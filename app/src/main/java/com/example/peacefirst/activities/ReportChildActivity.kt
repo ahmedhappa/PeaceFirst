@@ -12,7 +12,6 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
-import androidx.navigation.navArgs
 import com.example.peacefirst.R
 import com.example.peacefirst.apputils.Utils
 import com.example.peacefirst.base.BaseActivity
@@ -54,17 +53,17 @@ class ReportChildActivity : BaseActivity() {
         title = getString(R.string.title_report_child_activity)
         val reportType: ModelEnums.ReportType =
             intent.getSerializableExtra(EXTRA_REPORT_TYPE) as ModelEnums.ReportType
+        var reportTypeToSend = ""
 
-        when (reportType) {
-            ModelEnums.ReportType.Missing -> {
-                binding.tilChildCurrentPlace.visibility = View.GONE
-            }
-            ModelEnums.ReportType.Founded -> {
-                binding.tilChildMissedPlace.hint =
-                    getString(R.string.str_place_where_you_found_child)
-                binding.tilChildCurrentPlace.visibility = View.VISIBLE
-                isChildCurrentPlaceFieldActive = false
-            }
+        if (reportType == ModelEnums.ReportType.Missing) {
+            binding.tilChildCurrentPlace.visibility = View.GONE
+            reportTypeToSend = getString(R.string.str_missing)
+        } else {
+            binding.tilChildMissedPlace.hint =
+                getString(R.string.str_place_where_you_found_child)
+            binding.tilChildCurrentPlace.visibility = View.VISIBLE
+            isChildCurrentPlaceFieldActive = false
+            reportTypeToSend = getString(R.string.str_found)
         }
 
         validateFields()
@@ -99,7 +98,7 @@ class ReportChildActivity : BaseActivity() {
                 childImgName,
                 binding.etChildMissedPlace.text.toString(),
                 binding.etChildCurrentPlace.text.toString(),
-                reportType,
+                reportTypeToSend,
                 reporter
             )
 
@@ -188,7 +187,9 @@ class ReportChildActivity : BaseActivity() {
         }
         binding.etAge.doAfterTextChanged {
             it?.let {
-                if (it.toString().isNotEmpty() && it.toString().toInt() <= 20 && it.toString().toInt() != 0) {
+                if (it.toString().isNotEmpty() && it.toString().toInt() <= 20 && it.toString()
+                        .toInt() != 0
+                ) {
                     binding.tilAge.error = null
                     isChildAgeFieldActive = true
                 } else {
@@ -200,7 +201,9 @@ class ReportChildActivity : BaseActivity() {
         }
         binding.etHeight.doAfterTextChanged {
             it?.let {
-                if (it.toString().isNotEmpty() && it.toString().toInt() <= 150 && it.toString().toInt() >= 10) {
+                if (it.toString().isNotEmpty() && it.toString().toInt() <= 150 && it.toString()
+                        .toInt() >= 10
+                ) {
                     binding.tilHeight.error = null
                     isChildHeightFieldActive = true
                 } else {

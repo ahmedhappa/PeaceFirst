@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">PeaceFirst</string>
+    <string name="app_name">Find Me In</string>
     <string name="child_name_ar">AR-Name: %s</string>
     <string name="child_name_en">EN-Name : %s</string>
     <string name="child_age">%s Years Old</string>
+    <string name="child_age_more_than_10">%s Years Old</string>
     <string name="report_type">Report Type : %s</string>
     <string name="str_home">Home</string>
     <string name="str_about">About</string>
@@ -66,7 +67,7 @@
     <string name="str_clear_filters">Clear All Filters</string>
     <string name="str_add_filters">Add Filters</string>
     <string name="str_missing">Missing</string>
-    <string name="str_founded">Founded</string>
+    <string name="str_found">Found</string>
     <string name="str_call">Call</string>
     <string name="alert_report_type_message">What is the current status of child?</string>
     <string name="str_cancel">Cancel</string>
@@ -90,5 +91,6 @@
     <string name="str_error_age">Age Must Be Less than or equal 20</string>
     <string name="str_error_height">Height range from 10 to 150</string>
     <string name="str_more">More</string>
-    <string name="str_cuurent_child_status">Current Child Status</string>
+    <string name="str_current_child_status">Current Child Status</string>
+    <string name="str_no_data_show">No Data To Show</string>
 </resources>

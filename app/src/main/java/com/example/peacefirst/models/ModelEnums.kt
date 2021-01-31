@@ -12,8 +12,8 @@ object ModelEnums {
     }
 
     enum class ReportType {
-        @SerializedName("Founded")
-        Founded,
+        @SerializedName("Found")
+        Found,
         @SerializedName("Missing")
         Missing
     }

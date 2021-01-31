@@ -3,18 +3,14 @@ package com.example.peacefirst.fragments
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
-import com.ethanhua.skeleton.SkeletonScreen
 import com.example.peacefirst.R
 import com.example.peacefirst.activities.FilterActivity
 import com.example.peacefirst.activities.ReportChildActivity
@@ -91,28 +87,32 @@ class HomeFragment : BaseFragment() {
 
         binding.fabReportChild.setOnClickListener {
             DialogUtil.createSimpleFlexibleMaterialDialog(
-                requireActivity(),
-                getString(R.string.str_cuurent_child_status),
-                null,
-                getString(R.string.str_cancel),
-                { dialog, _ ->
-                    dialog.dismiss()
-                },
-                null,
-                null,
-                null,
-                null,
-                arrayOf(getString(R.string.str_missing),getString(R.string.str_founded)),
-                { dialog, which ->
+                requireActivity(), getString(R.string.title_report_child_activity),
+                getString(
+                    R.string.alert_report_type_message
+                ),
+                ModelEnums.ReportType.Missing.name,
+                { _, _ ->
                     val intent = Intent(requireActivity(), ReportChildActivity::class.java)
                     intent.putExtra(
                         ReportChildActivity.EXTRA_REPORT_TYPE,
-                        viewModel.reportTypeArray[which]
+                        ModelEnums.ReportType.Missing
                     )
                     startActivityForResult(intent, reportChildRequestCode)
-                    dialog.dismiss()
                 },
-                false
+                ModelEnums.ReportType.Found.name,
+                { _, _ ->
+                    val intent = Intent(requireActivity(), ReportChildActivity::class.java)
+                    intent.putExtra(
+                        ReportChildActivity.EXTRA_REPORT_TYPE,
+                        ModelEnums.ReportType.Found
+                    )
+                    startActivityForResult(intent, reportChildRequestCode)
+                },
+                getString(R.string.str_cancel),
+                { dialog, _ ->
+                    dialog.dismiss()
+                }, false
             ).show()
 
         }
@@ -134,7 +134,7 @@ class HomeFragment : BaseFragment() {
                 is Result.Success -> if (it.response.data?.isEmpty() == true) {
                     Toast.makeText(
                         requireActivity(),
-                        getString(R.string.toast_no_more_data),
+                        getString(R.string.str_no_data_show),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

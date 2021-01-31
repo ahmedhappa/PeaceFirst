@@ -179,13 +179,22 @@
                     style="@style/TextViewMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:drawablePadding="4dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_child_gender_header"
-                    tools:drawableEnd="@drawable/ic_male"
                     tools:text="Male" />
+
+                <ImageView
+                    android:id="@+id/iv_gender"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_child_gender"
+                    app:layout_constraintStart_toEndOf="@+id/tv_child_gender"
+                    app:layout_constraintTop_toTopOf="@+id/tv_child_gender"
+                    tools:src="@drawable/ic_male" />
 
                 <View
                     android:id="@+id/v2"

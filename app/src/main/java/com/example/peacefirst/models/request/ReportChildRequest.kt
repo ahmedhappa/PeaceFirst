@@ -20,7 +20,7 @@ data class ReportChildRequest(
     val childImgName: String,
     val childMissedPlace: String,
     val childCurrentPlace: String?,
-    val reportType: ModelEnums.ReportType,
+    val reportType: String,
     val reporter: Reporter
 ) {
     data class Reporter(
