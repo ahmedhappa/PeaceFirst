@@ -13,6 +13,7 @@ import com.example.peacefirst.repos.HomeRepo
 
 
 class HomeViewModel : BaseViewModel() {
+    private val pageSize = 20
     private val homeRepo = HomeRepo()
     private val _childrenMutableLiveData =
         MutableLiveData<Result<BaseResponse<MutableList<ChildrenResponse>>>>()
@@ -36,7 +37,7 @@ class HomeViewModel : BaseViewModel() {
     }
 
     fun getAllChildren() {
-        val requestPage: Int = (_childrenListMLD.value!!.size / 20) + 1
+        val requestPage: Int = (_childrenListMLD.value!!.size / pageSize) + 1
         callApi(_childrenMutableLiveData) {
             val result = homeRepo.getAllChildren(_childrenRequestMLD.value!!, requestPage)
             result.data?.let {
@@ -103,6 +104,6 @@ class HomeViewModel : BaseViewModel() {
     }
 
     fun canLoadMoreData(): Boolean {
-        return (childrenListSize % 20) == 0
+        return (childrenListSize % pageSize) == 0
     }
 }

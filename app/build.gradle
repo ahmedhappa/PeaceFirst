@@ -9,8 +9,8 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
     def majorVersion = 1
-    def minorVersion = 1
-    def patchVersion = 1
+    def minorVersion = 0
+    def patchVersion = 0
     defaultConfig {
         applicationId "com.example.peacefirst"
         minSdkVersion 21

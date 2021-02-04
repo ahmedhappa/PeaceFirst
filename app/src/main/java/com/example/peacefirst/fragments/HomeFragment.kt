@@ -13,6 +13,7 @@ import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
 import com.example.peacefirst.R
 import com.example.peacefirst.activities.FilterActivity
+import com.example.peacefirst.activities.MainActivity
 import com.example.peacefirst.activities.ReportChildActivity
 import com.example.peacefirst.adapters.ChildrenAdapter
 import com.example.peacefirst.apputils.DialogUtil
@@ -24,6 +25,7 @@ import com.example.peacefirst.models.ModelEnums
 import com.example.peacefirst.models.request.ChildrenRequest
 import com.example.peacefirst.models.response.ChildrenResponse
 import com.example.peacefirst.viewmodles.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : BaseFragment() {
     companion object {
@@ -63,17 +65,20 @@ class HomeFragment : BaseFragment() {
         })
         binding.rvHomeList.adapter = childrenAdapter
         binding.rvHomeList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!recyclerView.canScrollVertically(1) && viewModel.childrenListSize != 0) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE && viewModel.childrenListSize != 0) {
                     if (viewModel.canLoadMoreData()) {
                         viewModel.getAllChildren()
                     } else {
-                        Toast.makeText(
-                            requireActivity(),
+                        Snackbar.make(
+                            binding.rvHomeList,
                             getString(R.string.toast_no_more_data),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            Snackbar.LENGTH_LONG
+                        ).setAnchorView((requireActivity() as MainActivity).binding.bnvMain)
+                            .setAction(getString(R.string.str_refresh)) {
+                                viewModel.resetFilters()
+                            }.show()
                     }
                 }
             }
@@ -112,7 +117,7 @@ class HomeFragment : BaseFragment() {
                 getString(R.string.str_cancel),
                 { dialog, _ ->
                     dialog.dismiss()
-                }, false
+                }, true
             ).show()
 
         }
@@ -132,11 +137,14 @@ class HomeFragment : BaseFragment() {
         Observer<Result<BaseResponse<MutableList<ChildrenResponse>>>> {
             when (it) {
                 is Result.Success -> if (it.response.data?.isEmpty() == true) {
-                    Toast.makeText(
-                        requireActivity(),
+                    Snackbar.make(
+                        binding.rvHomeList,
                         getString(R.string.str_no_data_show),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        Snackbar.LENGTH_LONG
+                    ).setAnchorView((requireActivity() as MainActivity).binding.bnvMain)
+                        .setAction(getString(R.string.str_refresh)) {
+                            viewModel.resetFilters()
+                        }.show()
                 }
                 is Result.Error -> showError(it.exception.msg)
                 Result.Loading -> if (viewModel.childrenListSize > 0) showFullProgressDialog()

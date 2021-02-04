@@ -10,7 +10,7 @@ import com.example.peacefirst.databinding.ActivityMainBinding
 import com.example.peacefirst.viewmodles.MainViewModel
 
 class MainActivity : BaseActivity() {
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private var currentFragment: HomeFragmentsTypes = HomeFragmentsTypes.HOME
     private lateinit var navControllerFragment: NavController
     private val viewModel: MainViewModel by viewModels()

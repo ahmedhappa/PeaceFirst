@@ -1,23 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/silver_light"
-    android:orientation="vertical">
+    android:background="@drawable/instructions">
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/CardViewDefault"
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp">
+        android:background="#9d000000" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_instructions"
-            style="@style/TextViewMedium"
+            style="@style/TextViewLarge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
             android:scrollbars="vertical"
-            tools:text="Dummy Dummy Dummy\nDummyDummyDummyDummy\nDummyDummy" />
-    </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+            android:textColor="@color/white"
+            tools:text="Dummy Dummy Dummy\nDummyDummyDummyDummy\nDummyDummyDummy Dummy Dummy" />
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>
