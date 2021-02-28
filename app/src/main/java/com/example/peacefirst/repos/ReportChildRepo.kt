@@ -2,7 +2,7 @@ package com.example.peacefirst.repos
 
 import android.graphics.Bitmap
 import com.example.peacefirst.base.BaseApi
-import com.example.peacefirst.base.BaseResponse
+import com.example.peacefirst.models.BaseResponse
 import com.example.peacefirst.models.request.ReportChildRequest
 import com.example.peacefirst.webservices.ReportChildWebService
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

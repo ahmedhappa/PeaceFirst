@@ -1,4 +1,4 @@
-package com.example.peacefirst.base
+package com.example.peacefirst.models
 
 import com.google.gson.annotations.SerializedName
 

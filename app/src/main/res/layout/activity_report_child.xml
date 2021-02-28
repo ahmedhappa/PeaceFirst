@@ -58,7 +58,7 @@
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:digits="اأإبتثجحخدذرزسشضطظعغفقكلمنهويىءئ "
+                            android:digits="اأإبتثجحخدذرزسشصضطظعغفقكلمنهوؤيىءئلالآلألإآة "
                             android:inputType="text"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -78,8 +78,8 @@
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                            android:inputType="textPersonName"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName|textCapWords"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +94,6 @@
                         style="@style/TextViewLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
                         android:layout_marginTop="8dp"
                         android:text="@string/str_gender" />
 
@@ -354,8 +353,8 @@
                             style="@style/TextInputEditTextDefault"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:digits="اأإبتثجحخدذرزسشضطظعغفقكلمنهويىءئabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                            android:inputType="textPersonName" />
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName|textCapWords" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout

@@ -1,6 +1,5 @@
 package com.example.peacefirst.models.response
 
-import com.example.peacefirst.base.BaseResponse
 import com.example.peacefirst.models.ModelEnums
 import com.google.gson.annotations.SerializedName
 

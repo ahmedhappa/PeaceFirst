@@ -1,6 +1,6 @@
 package com.example.peacefirst.webservices
 
-import com.example.peacefirst.base.BaseResponse
+import com.example.peacefirst.models.BaseResponse
 import com.example.peacefirst.models.response.SocialResponse
 import retrofit2.http.GET
 

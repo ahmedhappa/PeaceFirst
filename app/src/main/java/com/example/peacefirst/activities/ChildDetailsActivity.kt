@@ -13,7 +13,7 @@ import coil.load
 import com.example.peacefirst.R
 import com.example.peacefirst.apputils.DialogUtil
 import com.example.peacefirst.base.BaseActivity
-import com.example.peacefirst.base.BaseResponse
+import com.example.peacefirst.models.BaseResponse
 import com.example.peacefirst.base.Result
 import com.example.peacefirst.databinding.ActivityChildDetailsBinding
 import com.example.peacefirst.models.ModelEnums

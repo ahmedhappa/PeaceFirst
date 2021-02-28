@@ -1,7 +1,6 @@
 package com.example.peacefirst.webservices
 
-import com.example.peacefirst.base.BaseResponse
-import com.example.peacefirst.models.ModelEnums
+import com.example.peacefirst.models.BaseResponse
 import com.example.peacefirst.models.response.ChildrenResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

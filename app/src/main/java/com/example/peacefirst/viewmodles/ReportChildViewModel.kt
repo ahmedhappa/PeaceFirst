@@ -2,7 +2,7 @@ package com.example.peacefirst.viewmodles
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.peacefirst.base.BaseResponse
+import com.example.peacefirst.models.BaseResponse
 import com.example.peacefirst.base.BaseViewModel
 import com.example.peacefirst.base.Result
 import com.example.peacefirst.models.request.ReportChildRequest
