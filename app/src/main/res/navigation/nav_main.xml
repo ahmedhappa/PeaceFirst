@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.peacefirst.fragments.HomeFragment"
+        android:name="com.peacefirst.ingedny.fragments.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -33,7 +33,7 @@
 
     <activity
         android:id="@+id/childDetailsActivity"
-        android:name="com.example.peacefirst.activities.ChildDetailsActivity"
+        android:name="com.peacefirst.ingedny.activities.ChildDetailsActivity"
         android:label="activity_child_details"
         tools:layout="@layout/activity_child_details">
         <argument
@@ -42,7 +42,7 @@
     </activity>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.peacefirst.fragments.AboutFragment"
+        android:name="com.peacefirst.ingedny.fragments.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about">
         <action
@@ -56,7 +56,7 @@
 
     <fragment
         android:id="@+id/instructionsFragment"
-        android:name="com.example.peacefirst.fragments.InstructionsFragment"
+        android:name="com.peacefirst.ingedny.fragments.InstructionsFragment"
         android:label="InstructionsFragment"
         tools:layout="@layout/fragment_instructions">
         <action

@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.example.peacefirst.models.** { *; }
+-keep class com.peacefirst.ingedny.models.** { *; }

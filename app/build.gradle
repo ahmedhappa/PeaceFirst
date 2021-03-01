@@ -12,7 +12,7 @@ android {
     def minorVersion = 0
     def patchVersion = 0
     defaultConfig {
-        applicationId "com.example.peacefirst"
+        applicationId "com.peacefirst.ingedny"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

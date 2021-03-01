@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.peacefirst">
+    package="com.peacefirst.ingedny">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -23,7 +23,7 @@
         <activity android:name=".activities.FilterActivity" />
         <activity android:name=".activities.ChildDetailsActivity" />
         <activity
-            android:name=".activities.ReportChildActivity"
+            android:name="com.peacefirst.ingedny.activities.ReportChildActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".activities.MainActivity" />
     </application>
